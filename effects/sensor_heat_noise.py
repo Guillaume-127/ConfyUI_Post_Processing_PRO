@@ -39,13 +39,18 @@ class SensorHeatNoisePRO:
             # Smooth step for a more organic falloff
             shadow_mask = shadow_mask * shadow_mask * (3.0 - 2.0 * shadow_mask)
             
-            # Generate High Frequency Uniform Noise
-            # R and B channels get the most thermal sensor noise physically
-            noise_r = np.random.uniform(-1.0, 1.0, (h, w)) * red_noise
-            noise_g = np.random.uniform(-0.5, 0.5, (h, w)) * 0.2 # Very little green noise
-            noise_b = np.random.uniform(-1.0, 1.0, (h, w)) * blue_noise
+            # Generate Gaussian High Frequency Noise (Normal Distribution)
+            # Uniform noise often creates mathematical grids that cause Moiré/linear artifacts on monitors.
+            # Normal distribution concentrates around 0.0 with true organic peaks.
+            noise_r = np.random.normal(0.0, 0.5, (h, w)) * red_noise
+            noise_g = np.random.normal(0.0, 0.5, (h, w)) * 0.2 # Very little green noise
+            noise_b = np.random.normal(0.0, 0.5, (h, w)) * blue_noise
             
             noise_map = np.stack([noise_r, noise_g, noise_b], axis=-1)
+            
+            # Micro-blur to break the pure 1x1 digital pixel stiffness
+            # This causes the noise to clump slightly like real physical sensor structures
+            noise_map = cv2.GaussianBlur(noise_map, (3, 3), sigmaX=0.6)
             
             # Apply Noise scaled by the shadow mask and overall strength
             result = img + (noise_map * np.expand_dims(shadow_mask, axis=-1) * noise_strength)

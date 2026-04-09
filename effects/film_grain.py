@@ -45,6 +45,10 @@ class FilmGrainPRO:
             # Upsample if dealing with thick grain scale
             if scale != 1.0:
                 noise = cv2.resize(noise, (w, h), interpolation=cv2.INTER_CUBIC)
+            else:
+                # Micro-blur to break the digital 1x1 pixel rigidity
+                # Prevents Moiré screen artifacts when generating perfect noise
+                noise = cv2.GaussianBlur(noise, (3, 3), sigmaX=0.6)
                 
             # Add to the image using a linear light approach, mimicking exposure variance
             result = img + (noise * strength)
