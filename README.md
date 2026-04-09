@@ -1,5 +1,10 @@
 # Post_Processing_PRO for ComfyUI
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![ComfyUI](https://img.shields.io/badge/ComfyUI-Custom_Node-blue)
+![Python](https://img.shields.io/badge/Python-3.x-blue.svg)
+![GitHub Repo stars](https://img.shields.io/github/stars/Guillaume-127/ConfyUI_Post_Processing_PRO?style=social)
+
 A professional, high-fidelity post-processing node suite curated for ComfyUI. `Post_Processing_PRO` simulates precise physical analog camera behaviors using advanced mathematical modeling, taking your AI rendering pipelines closer to real cinematography.
 
 **Directly compatible with ComfyUI Manager.**
