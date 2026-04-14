@@ -11,6 +11,8 @@ from .effects.subsurface_diffusion import SubsurfaceDiffusionPRO
 from .effects.film_grain import FilmGrainPRO
 from .effects.cinematic_adaptive_sharpening import CinematicAdaptiveSharpeningPRO
 
+from .grading.color_match import CinematicColorMatchPRO
+
 from .utilities.auto_resize_match import AutoResizeMatchPRO
 
 # Mapping the Node Class implementation to a unique internal identifier for ComfyUI
@@ -29,6 +31,9 @@ NODE_CLASS_MAPPINGS = {
     "SubsurfaceDiffusionPRO": SubsurfaceDiffusionPRO,
     "FilmGrainPRO": FilmGrainPRO,
     "CinematicAdaptiveSharpeningPRO": CinematicAdaptiveSharpeningPRO,
+    
+    # Grading
+    "CinematicColorMatchPRO": CinematicColorMatchPRO,
     
     # Utilities
     "AutoResizeMatchPRO": AutoResizeMatchPRO
@@ -50,6 +55,9 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "SubsurfaceDiffusionPRO": "Subsurface Diffusion PRO",
     "FilmGrainPRO": "Film Grain PRO",
     "CinematicAdaptiveSharpeningPRO": "Cinematic Adaptive Sharpening PRO",
+    
+    # Grading
+    "CinematicColorMatchPRO": "Cinematic Color Match PRO",
     
     # Utilities
     "AutoResizeMatchPRO": "Auto Resize Match PRO"

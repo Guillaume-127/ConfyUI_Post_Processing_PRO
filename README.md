@@ -44,6 +44,12 @@ Mimics the legendary physical oxidation, sensor biology, and light physics pheno
 7. **Subsurface Diffusion PRO**
    - Simulates light penetrating the epidermis (skin) by exclusively diffusing the Red channel of the image, while ensuring the Green and Blue channels remain perfectly sharp to retain crisp pore resolution.
 
+### 🎨 Grading (`Post_Processing_PRO/Grading`)
+Professional color science and digital intermediate tools.
+
+1. **Cinematic Color Match PRO**
+   - Transmutes the exact color grading palette and contrast of any reference image (a frame from your favorite movie) onto your AI generation. It uses mathematically rigorous Reinhard L*a*b* color transfer to match the mood flawlessly without distorting pixels. Includes a strength blend slider.
+
 ### 🛠️ Utilities (`Post_Processing_PRO/Utilities`)
 Essential production tools to handle high-end pipelines.
 
