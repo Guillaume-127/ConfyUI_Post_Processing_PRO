@@ -50,6 +50,9 @@ Professional color science and digital intermediate tools.
 1. **Cinematic Color Match PRO**
    - Transmutes the exact color grading palette and contrast of any reference image (a frame from your favorite movie) onto your AI generation. It uses mathematically rigorous Reinhard L*a*b* color transfer to match the mood flawlessly without distorting pixels. Includes a strength blend slider.
 
+2. **FPE Kodak 2383 (CST Log) PRO**
+   - Emulates the highly sought-after Kodak 2383 film stock used in Hollywood blockbusters. It mathematically unbuilds the AI image (sRGB -> Linear -> Cineon Log) and applies a rigorous photometric response curve to achieve dense cyans in the shadows, warm cinematic highlights, and a smooth highlight roll-off. Blend the density to your liking.
+
 ### 🛠️ Utilities (`Post_Processing_PRO/Utilities`)
 Essential production tools to handle high-end pipelines.
 

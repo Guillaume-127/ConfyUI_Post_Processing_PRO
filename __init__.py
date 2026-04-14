@@ -12,6 +12,7 @@ from .effects.film_grain import FilmGrainPRO
 from .effects.cinematic_adaptive_sharpening import CinematicAdaptiveSharpeningPRO
 
 from .grading.color_match import CinematicColorMatchPRO
+from .grading.film_print_emulation import FPE_Kodak2383_PRO
 
 from .utilities.auto_resize_match import AutoResizeMatchPRO
 
@@ -34,6 +35,7 @@ NODE_CLASS_MAPPINGS = {
     
     # Grading
     "CinematicColorMatchPRO": CinematicColorMatchPRO,
+    "FPE_Kodak2383_PRO": FPE_Kodak2383_PRO,
     
     # Utilities
     "AutoResizeMatchPRO": AutoResizeMatchPRO
@@ -58,6 +60,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     
     # Grading
     "CinematicColorMatchPRO": "Cinematic Color Match PRO",
+    "FPE_Kodak2383_PRO": "FPE Kodak 2383 (CST Log) PRO",
     
     # Utilities
     "AutoResizeMatchPRO": "Auto Resize Match PRO"
