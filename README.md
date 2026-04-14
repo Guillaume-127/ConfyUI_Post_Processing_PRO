@@ -1,6 +1,6 @@
 # Post_Processing_PRO for ComfyUI
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 ![ComfyUI](https://img.shields.io/badge/ComfyUI-Custom_Node-blue)
 ![Python](https://img.shields.io/badge/Python-3.x-blue.svg)
 ![GitHub Repo stars](https://img.shields.io/github/stars/Guillaume-127/ConfyUI_Post_Processing_PRO?style=social)
@@ -57,4 +57,4 @@ Essential production tools to handle high-end pipelines.
 3. Restart ComfyUI.
 
 ## License
-MIT License - Open for personal and commercial usage.
+[GNU General Public License v3.0 (GPL-3.0)](https://www.gnu.org/licenses/gpl-3.0) - Open source, copyleft license. See the `LICENSE` file for details.
