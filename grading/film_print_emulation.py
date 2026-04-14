@@ -16,6 +16,7 @@ class FPE_Kodak2383_PRO:
                 "image": ("IMAGE",),
                 "print_strength": ("FLOAT", {"default": 0.8, "min": 0.0, "max": 1.0, "step": 0.01}),
                 "log_density": ("FLOAT", {"default": 2.5, "min": 1.0, "max": 4.0, "step": 0.1}),
+                "chroma_shift": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 1.0, "step": 0.01}),
             }
         }
 
@@ -35,7 +36,7 @@ class FPE_Kodak2383_PRO:
         cineon = (np.log10(lin_safe * (1.0 - 0.0108) + 0.0108) * 300 + 685) / 1023
         return np.clip(cineon, 0.0, 1.0)
 
-    def apply_2383_emulation(self, cineon_log, log_density):
+    def apply_2383_emulation(self, cineon_log, log_density, chroma_shift):
         # Split RGB channels
         r = cineon_log[..., 0]
         g = cineon_log[..., 1]
@@ -63,20 +64,20 @@ class FPE_Kodak2383_PRO:
         highlight_mask = np.clip((lum - 0.6) / 0.4, 0.0, 1.0)
 
         # Cyan Shadows: Subtract Red, Add Blue & slightly Green
-        res_r = res_r - (shadow_mask * 0.06)
-        res_b = res_b + (shadow_mask * 0.04)
-        res_g = res_g + (shadow_mask * 0.01)
+        res_r = res_r - (shadow_mask * 0.06 * chroma_shift)
+        res_b = res_b + (shadow_mask * 0.04 * chroma_shift)
+        res_g = res_g + (shadow_mask * 0.01 * chroma_shift)
 
         # Golden Highlights: Add Red, Subtract Blue
-        res_r = res_r + (highlight_mask * 0.05)
-        res_b = res_b - (highlight_mask * 0.07)
+        res_r = res_r + (highlight_mask * 0.05 * chroma_shift)
+        res_b = res_b - (highlight_mask * 0.07 * chroma_shift)
 
         # 3. Highlight Roll-off (Shoulder protection)
         # The transfer function above scales to 1.0 smoothly, but we cap it to be safe
         fpe_rgb = np.stack([res_r, res_g, res_b], axis=-1)
         return np.clip(fpe_rgb, 0.0, 1.0)
 
-    def apply_fpe(self, image, print_strength, log_density):
+    def apply_fpe(self, image, print_strength, log_density, chroma_shift):
         batch_size, h, w, c = image.shape
         out_images = []
 
@@ -88,7 +89,7 @@ class FPE_Kodak2383_PRO:
             cineon_log = self.linear_to_cineon_log(lin_img)
 
             # Phase 2: Emulate physical Kodak 2383 print film reaction
-            fpe_img = self.apply_2383_emulation(cineon_log, log_density)
+            fpe_img = self.apply_2383_emulation(cineon_log, log_density, chroma_shift)
 
             # Phase 3: Opacity Blend
             # Professional colorists blend the FPE print back to the original to retain modern sharpness/luminance
